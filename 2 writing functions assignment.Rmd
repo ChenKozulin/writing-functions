@@ -1,0 +1,55 @@
+---
+title: "2 writing functions assignment"
+author: "ChenKozulin"
+date: "21 בנובמבר 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document of function that computes canopy conductance based on Penman Montieth Model 
+
+```# Determine leaf conductance (mmol m⁻² s⁻¹)
+cleaf<- c(27.588,26.525,25.499,24.731,24.491,24.211,24.999,19.604,18.577,	17.569)
+
+#Determine % of CO2 in the environment
+CO2 <- sample(16:20, 1)
+
+#Determine RLWC (no units)
+RLWC<-runif(1,0.0, 1.0)
+
+#Determine StoDen (mm⁻²)
+StoDen<-sample(1:10, 1)
+
+#Determine Net Radiation
+Rnet<-c(87.730,85.407,124.898,97.815,22.52, 71.094,114.206,92.916,122.546,46.220)
+
+#Determine Vapor Pressure Differance (VDP)
+vdp<-c(13.726,15.642,21.280,22.790,5.229,6.630,19.569,12.704,34.011,19.983)
+
+#Determine Tair
+Tair<-c(19.337,21.888,4.962,31.904,26.057,8.572,10.194,8.238,28.053,13.8140159)
+
+Can_Con=function(cleaf,CO2,RLWC,StoDen,Rnet,vdp,Tair){
+  
+  res=data.frame(cleaf,CO2,RLWC,StoDen,Rnet,vdp,Tair)
+  CanCond = (cleaf*StoDen)*CO2*Rnet*vdp*Tair*RLWC
+  
+  return(CanCond)
+  
+}
+
+
+## Including Plots
+
+
+
+{res, echo=FALSE}
+plot(res$StoDen)
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
