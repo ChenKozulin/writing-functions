@@ -1,9 +1,11 @@
 Package: writing_functions
 Type: Package
-Title: What the package does (short line)
+Title: Computes Canopy Conductance based on the PM model
 Version: 1.0
 Date: 2016-11-22
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Chen
+Maintainer: Chen.kozulin@mail.huji.ac.il
+Description:This function uses PM model as a basis for calculating 
+Canopy Conductance, taking into account the average stomatal density 
+of plant populations
+License: Common
