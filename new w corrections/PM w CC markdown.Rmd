@@ -1,0 +1,63 @@
+---
+title: "PM with CC"
+author: "ChenKozulin"
+date: "23 בנובמבר 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r PM with CC paramters}
+
+# Determine leaf conductance (mmol m⁻² s⁻¹)
+cleaf<- c(17.577,17.841,20.208,25.942,26.274,27.051,27.792,28.1,29.008,29.276)
+
+
+#Determine % of CO2 in the environment
+CO2 <- c(16.937,17.893,18.817,19.765,20.745,20.683,18.680,17.647,16.609,16.220)
+
+#Determine RLWC (no units)
+RLWC<-c(69.70,68.54,67.94,67.7,67.29,67.06,66.86,66.73,66.57)
+
+#Determine StoDen (mm⁻²)
+StoDen<-c(25.95,26.74,27.69,28.79,29.19,30.33,31.99,32.16,32.38,33.0)
+
+#Determine Net Radiation
+Rnet<-c(139.472,139.236,138.366,138.065,136.442,128.438,124.898,124.549,123.385,122.546)
+
+
+#Determine Vapor Pressure Differance (VDP)
+vdp<-c(0.14,0.61,1.21,1.24,1.54,1.61,1.63,1.85,2.39,2.52)
+
+#Determine Tair
+Tair<-c(34.45,33.56,32.17,32.09,31.99,31.90,30.31,29.42,29.01,28.64)
+#The function recieves the following parameters
+CanCon(cleaf,CO2,RLWC,StoDen,Rnet,vdp,Tair)
+
+
+```
+
+## Including Plots
+
+
+
+```{r StoDen to co2, echo=FALSE}
+
+plot(cleaf,StoDen)
+plot(StoDen,CO2)
+```
+```{r ET response to conditions , echo=FALSE}
+# ET param
+penman_montieth(Tair=30,vdp,Rnet=Rnet,2.5,3,1010.0,101325)
+# Canopy Conductance param
+CanCon(cleaf=cleaf*2,CO2=CO2/2,RLWC,StoDen=StoDen/2,Rnet,vdp,Tair)
+
+plot(StoDen,vdp)
+plot(StoDen,Rnet)
+```
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

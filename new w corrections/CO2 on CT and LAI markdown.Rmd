@@ -1,0 +1,64 @@
+---
+title: "Primary"
+author: "ChenKozulin"
+date: "24 בנובמבר 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+# the question the function is being used to answer
+
+#'The function examines the effect of Leaf Area Index (LAI) calculations on Primary Productivity Assesment.
+
+# theory behind the function
+
+
+
+#' LAI could be calculated in two principal ways: directly- by taking significant samples of leaf area covering a specific plot of ground around trees in agiven environment, or indirectly- by measuring the difference between light levels above the canopy and at ground level.As LAI is often used to calculate Primary Productivity (PP), the function tests the extent of diviation in PP calculations made useing the two different ways to calculate LAI.    
+
+#'The function takes as input LAI calculated by direct methods (averaged leaf area/ground trap area), denoted LAI1, and LAI as calculated by measuring the difference between light levels above the canopy and at ground level(LAI2).  
+#'In addition, the function requires productivity paramters:Pmax- Maximum Primary Production and k- a Growth Coefficient, specific for the environment investigated. 
+
+```{r LAI and Productivity}
+#example application of your function with data 
+
+#Input LAI calculated by direct methods (LAI1)
+LAI1<-c(1.04,1.367,1.47,1.978,2.086,2.579,2.711,3.049,3.209,3.766)
+
+#Input LAI calculated by indirect methods (LAI2)
+LAI2<-c(0.999,1.504,1.338,2.374,1.606,3.095,2.385,3.08,2.888,4.481)
+
+#Maximum Primary Production
+Pmax=1
+
+#Growth Coefficient
+k=0.856
+ 
+#Calculate Productivity with LAI1
+P1=Pmax*(1-(exp(-k*LAI1)))
+#Calculate Productivity with LAI2
+P2=Pmax*(1-(exp(-k*LAI2)))
+
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r LAI, echo=FALSE}
+# summary of results
+summary(LAI1)
+summary(LAI2)
+summary(P1)
+summary(P2)
+plot(LAI1,P1)
+plot(LAI2,P2)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
