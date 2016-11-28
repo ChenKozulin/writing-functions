@@ -1,0 +1,53 @@
+---
+title: "transpiration from yeild"
+author: "ChenKozulin"
+date: "28 בנובמבר 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+# the question the function is being used to answer
+
+#'The function computes the expected canopy transpiration from biomass yeild.
+
+# theory behind the function
+#'According to: Novak, V., & Van Genuchten, M. T. (2008). Using the transpiration 
+#'regime to estimate biomass production. Soil science, 173(6), 401-407.
+
+
+#' 
+
+```{r transpiration from yeild}
+#example application of your function with data 
+
+#dry biomass produced per unit area (t/ha)
+Y<-c(0,2,4,6,8,10,12)
+
+#crop water use efficiency (t/ha/cm)
+kt=0.71
+
+#intersection of the equation with the vertical axis
+Y0=2.4
+
+#Calculate transpiration from yeild
+Et=(Y+Y0)/kt
+```
+
+## Including Plots
+
+
+
+```{r transpiration, echo=FALSE}
+# summary of results
+summary(Y)
+summary(Et)
+plot(Et,Y)
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
