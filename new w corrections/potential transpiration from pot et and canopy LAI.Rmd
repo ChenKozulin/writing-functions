@@ -1,0 +1,59 @@
+---
+title: "potential Transpiration from pot et and canopy leaf area index"
+author: "ChenKozulin"
+date: "29 בנובמבר 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+# the question the function is being used to answer
+
+The function computes the expected canopy transpiration from data of potential evapotranspiration and canopy leaf area index.
+
+# theory behind the function
+
+Novák and Havrila (2005) note that the use of the PM model to assess transpiration is limited by the poor ability to calculate canopy resistance, which is influenced by a variety environmental parameters.
+Instead, they propose to use a semi-emperical model developed by Novak (1995)
+According to this model, potential transpiration (Etp)can be calculated 
+as a function of potential evapotranspiration (Ep) and canopy leaf area index (ω0). 
+
+Novák and Havrila (2005) Transpiration of Plants: A Review of Calculation Methods. Geophysical Research Abstracts, Vol. 7, 07181 SRef-ID: 1607-7962/gra/EGU05-A-07181
+
+Novák (1995) Evapotranspiration and its estimation, Veda, Bratislava, 260 pp., (in Slovak)
+
+```{r canopy transpiration from pot ET and canopy LAI}
+#example application of your function with data 
+
+# potential evapotranspiration (mm/day)
+
+Ep=c(4.7,4.6,5.2,4.3,3.7,3.1)
+
+# canopy leaf area index coefﬁcient. 
+beta= c(0.45, 0.47,0.49,0.51,0.53,0.55)
+# canopy leaf area index
+omega0= c(0.5,0.75,1.4,1.47,1.5,1.6)
+
+
+
+# Calculate potential transpiration (Etp)from potential evapotranspiration (Ep) and canopy leaf area index (omega0)
+Etp=Ep*exp(1-exp(-beta*omega0))
+```
+
+## Including Plots
+
+
+```{r Pot Et, echo=FALSE}
+# summary of results
+summary(Etp)
+summary(Ep)
+summary(beta)
+summary(omega0)
+plot(omega0,Etp,type="b")
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
