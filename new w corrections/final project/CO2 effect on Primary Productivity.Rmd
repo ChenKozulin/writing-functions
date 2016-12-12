@@ -1,0 +1,59 @@
+---
+title: "CO2 effect on Primary Productivity"
+author: "ChenKozulin"
+date: "4 בדצמבר 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+
+```{r CO2 effect on PP}
+# Leaf Area Index (m^2/m^2)under ambient CO2
+LAIaCO2<-c(0.5,1,2,3,4,3.75,3.5,3.2,2.5,2,1,0.75,0.5)
+
+# Leaf Area Index (m^2/m^2)under elevated CO2
+LAIeCO2<-c(0.5,2,3,4,6,5.75,6,5.2,4.5,3.5,1.5,1.2,0.5)
+
+#Maximum Primary Production
+Pmax=1
+
+#Growth Coefficient
+k=0.856
+
+##Calculate Productivity with LAI at ambient CO2 conditions
+P1=Pmax*(1-(exp(-k*LAIaCO2)))
+P1
+
+#Calculate Productivity with LAI at elevated CO2 conditions
+P2=Pmax*(1-(exp(-k*LAIeCO2)))
+P2
+
+```
+
+## Including Plots
+
+
+
+```{r PP ambient vs elevated CO2, echo=FALSE}
+# summary of results
+summary(LAIaCO2)
+summary(LAIeCO2)
+summary(P1)
+summary(P2)
+plot(LAIaCO2,P1)
+plot(LAIeCO2,P2)
+
+plot(LAIaCO2,P1,col="orange",pch=19)
+points(LAIeCO2,P2,col="red",pch=19)
+
+plot(P1,P2, col="red")
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

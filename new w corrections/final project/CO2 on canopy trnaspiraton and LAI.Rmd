@@ -1,0 +1,62 @@
+---
+title: "CO2 on canopy trnaspiration and LAI"
+author: "ChenKozulin"
+date: "3 בדצמבר 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+# the question the function is being used to answer
+The function explores the effect of changing atmospheric CO2 levels 
+on Canopy Transpiration and LAI.
+
+
+```{r Canopy Transpiration and LAI with var CO2}
+
+# Canopy Transpiration (mm/day) under ambient CO2
+CTaCO2<-c(0.75,0.25,3,2,5.625,1.875,5.75,1.875,3.75,1.25,1.5,0.25,0.75)
+
+# Leaf Area Index (m^2/m^2)under ambient CO2
+LAIaCO2<-c(0.5,1,2,3,4,3.75,3.5,3.2,2.5,2,1,0.75,0.5)
+
+#days of obesrvation
+days<-c(0,25,50,75,100,125,150,175,200,225,250,275,300)
+
+# Canopy Transpiration (mm/day) under elevated CO2
+CTeCO2<-c(0.2,1,0.6,2,1.625,3.875,2.75,3.875,2,2.6,0.5,0.5,0.2)
+
+# Leaf Area Index (m^2/m^2)under elevated CO2
+LAIeCO2<-c(0.5,2,3,4,6,5.75,6,5.2,4.5,3.5,1.5,1.2,0.5)
+
+
+boxplot(summary(CTaCO2),summary(CTeCO2))
+boxplot(summary(LAIeCO2),summary(LAIaCO2))
+
+```
+
+## Including Plots
+
+
+
+```{r LAI CT, echo=FALSE}
+plot(days,CTaCO2,type="l",col="blue",ylim = c(0,7))
+lines(days,LAIaCO2,col="red")
+
+plot(days,CTeCO2,type="l",col="blue",ylim = c(0,7))
+lines(days,LAIeCO2,col="red")
+
+plot(days,CTeCO2,type="b",col="blue",ylim = c(0,7))
+points(days,CTaCO2,type="b",col="black")
+
+plot(days,LAIeCO2,col="orange")
+points(days,LAIaCO2,col="red")
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

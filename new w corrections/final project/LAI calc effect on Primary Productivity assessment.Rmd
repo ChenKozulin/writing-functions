@@ -1,0 +1,106 @@
+---
+title: "LAI calc effect on Primary Productivity"
+author: "ChenKozulin"
+date: "4 בדצמבר 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+# the question the function is being used to answer
+
+The function examines the effect of Leaf Area Index (LAI) calculations on Primary Productivity Assesment.
+
+# theory behind the function
+
+LAI could be calculated in two principal ways: directly- by taking significant samples of leaf area covering a specific plot of ground around trees in agiven environment, or indirectly- by measuring the difference between light levels above the canopy and at ground level.As LAI is often used to calculate Primary Productivity (PP), the function tests the extent of diviation in PP calculations made useing the two different ways to calculate LAI.    
+
+The function takes as input LAI calculated by direct methods (averaged leaf area/ground trap area), denoted LAI1, and LAI as calculated by measuring the difference between light levels above the canopy and at ground level(LAI2).  
+In addition, the function requires productivity paramters:Pmax- Maximum Primary Production and k- a Growth Coefficient, specific for the environment investigated.
+
+
+
+```{r PP on LAI}
+#example application of your function with data 
+
+#ambient CO2 
+
+#Input LAI calculated by direct methods (LAIDiraCO2)
+LAIDiraCO2<-c(0.52,0.975,1.89,2.52,3.075,3.25,3.584,3.965,4.125,4.5)
+
+#Input LAI calculated by indirect methods (LAIinDiraCO2)
+LAIinDiraCO2<-c(0.5,0.75,1,2,2.5,3,3.2,3.5,3.75,4)
+
+#elevated CO2
+
+#Input LAI calculated by direct methods (LAIDireCO2)
+LAIDireCO2<-c(0.515,1.08,1.5335,1.802,2.59,3.5,4.48,4.455,4.68,4.715)
+
+#Input LAI calculated by indirect methods (LAIinDireCO2)
+LAIinDireCO2<-c(0.5,1.2,1.5,2,3,3.5,4,4.5,5.2,5.75)
+
+#Maximum Primary Production
+Pmax=1
+
+#Growth Coefficient
+k=0.856
+ 
+#elevated CO2
+
+#Calculate Productivity with direct LAI
+PDireCO2=Pmax*(1-(exp(-k*LAIDireCO2)))
+#Calculate Productivity with indirect LAI
+PinDireCO2=Pmax*(1-(exp(-k*LAIinDireCO2)))
+
+#ambient CO2
+
+#Calculate Productivity with direct LAI
+PDiraCO2=Pmax*(1-(exp(-k*LAIDiraCO2)))
+#Calculate Productivity with indirect LAI
+PinDiraCO2=Pmax*(1-(exp(-k*LAIinDiraCO2)))
+PDiraCO2
+PinDiraCO2
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r Production LAI, echo=FALSE}
+
+#ambient CO2
+
+#plot direct LAI against P in ambient CO2
+LAIDiraCO2
+PDiraCO2
+
+plot(LAIinDiraCO2,PinDiraCO2,col="orange",pch=19)
+points(LAIinDiraCO2,PDiraCO2,col="yellow",pch=19) 
+
+plot(LAIDiraCO2,PDiraCO2)
+#plot indirect LAI against P in ambient CO2
+LAIinDiraCO2
+PinDiraCO2
+
+plot(LAIinDiraCO2,PinDiraCO2)
+
+#elevated CO2
+
+#plot direct LAI against P in elevated CO2
+LAIDireCO2
+PDireCO2
+
+plot(LAIDireCO2,PDireCO2)
+
+#plot indirect LAI against P in elevated CO2
+LAIinDireCO2
+PinDireCO2
+
+plot(LAIinDireCO2,PinDireCO2)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
